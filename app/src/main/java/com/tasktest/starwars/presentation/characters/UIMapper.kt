@@ -31,5 +31,6 @@ fun Character.mapToUI() = CharacterUI(
     name = this.name,
     height = height,
     mass = mass,
+    filmIDs = filmIDs,
     eyeColor = eyeColor.toColorUI()
 )

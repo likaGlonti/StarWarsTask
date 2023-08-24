@@ -9,6 +9,7 @@ data class CharacterResponse(
     val height: String,
     val mass: String,
     val species: List<String> = emptyList(),
+    val films: List<String> = emptyList(),
     @SerialName("eye_color")
     val eyeColor: EyeColor = EyeColor.Blue
 )

@@ -6,3 +6,10 @@ plugins {
     kotlin("jvm") version "1.9.0"
     kotlin("plugin.serialization") version "1.9.0"
 }
+buildscript {
+
+    dependencies {
+        val nav_version = "2.7.1"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
+}

@@ -1,7 +1,7 @@
 package com.tasktest.starwars.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.tasktest.starwars.data.StarWarsApiService
+import com.tasktest.starwars.data.remote.StarWarsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

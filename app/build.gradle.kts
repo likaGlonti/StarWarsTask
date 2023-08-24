@@ -4,11 +4,13 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     id("kotlinx-serialization")
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs")
 }
 
 android {
     namespace = "com.tasktest.starwars"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.tasktest.starwars"
@@ -90,4 +92,8 @@ dependencies {
     implementation("androidx.paging:paging-compose:3.2.0")
 
     implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    //Navigation
+    val navVersion = "2.7.1"
+    implementation("androidx.navigation:navigation-compose:$navVersion")
 }

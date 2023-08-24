@@ -8,5 +8,6 @@ data class Character(
     val name: String,
     val height: String,
     val mass: String,
+    val filmIDs: List<Int>,
     val eyeColor: EyeColor = EyeColor.Golden
 )

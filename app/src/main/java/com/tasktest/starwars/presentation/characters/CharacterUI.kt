@@ -7,5 +7,6 @@ data class CharacterUI(
     val name: String,
     val height: String,
     val mass: String,
+    val filmIDs: List<Int>,
     val eyeColor: Color = Color.White
 )

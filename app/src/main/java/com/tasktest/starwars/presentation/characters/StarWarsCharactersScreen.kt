@@ -10,11 +10,11 @@ import androidx.paging.compose.collectAsLazyPagingItems
 @Composable
 fun StarWarsCharactersScreen(
     modifier: Modifier = Modifier,
-    charactersVM: StarWarsCharactersVM = hiltViewModel()
+    charactersVM: StarWarsCharactersViewModel = hiltViewModel()
 ) {
     val charactersPagingItems: LazyPagingItems<CharacterUI> =
         charactersVM.state.collectAsLazyPagingItems()
     Box(modifier) {
-        StarWarsCharactersList(charactersPagingItems,  {}, {}, modifier)
+        StarWarsCharactersList(charactersPagingItems, onRetry = { TODO() }, modifier)
     }
 }

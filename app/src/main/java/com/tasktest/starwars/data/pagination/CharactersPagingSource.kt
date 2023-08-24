@@ -2,7 +2,7 @@ package com.tasktest.starwars.data.pagination
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.tasktest.starwars.data.StarWarsApiService
+import com.tasktest.starwars.data.remote.StarWarsApiService
 import com.tasktest.starwars.data.error.NoMorePagesLeftToLoadException
 import com.tasktest.starwars.data.model.CharacterResponse
 import com.tasktest.starwars.data.pagination.CharactersRemoteDataSource.Companion.NETWORK_PAGE_SIZE

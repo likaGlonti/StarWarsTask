@@ -30,20 +30,31 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.tasktest.starwars.R
 import com.tasktest.starwars.data.error.NoMorePagesLeftToLoadException
+import com.tasktest.starwars.navigation.AppScreen
+import com.tasktest.starwars.navigation.FILM_IDS_ARG
+import com.tasktest.starwars.navigation.LocalNavController
 import com.tasktest.starwars.ui.theme.StarWarsTheme
 
 @Composable
 fun StarWarsCharactersList(
     characterItems: LazyPagingItems<CharacterUI>,
     onRetry: () -> Unit,
-    navigate: () -> Unit,
     modifier: Modifier
 ) {
+    val navController = LocalNavController.current
     LazyColumn(modifier = modifier)
     {
         items(characterItems.itemCount) { index ->
             characterItems[index]?.let {
-                CharacterItem(character = it, onCellClick = navigate, modifier = modifier)
+                CharacterItem(
+                    character = it,
+                    onCellClick = {
+                        navController.navigate(
+                            "${AppScreen.FilmsScreen.route}/$FILM_IDS_ARG=${it.filmIDs.toIntArray()}"
+                        )
+                    },
+                    modifier = modifier
+                )
             }
         }
         characterItems.apply {
@@ -121,14 +132,6 @@ fun NextPageLoaderItem() {
 }
 
 @Composable
-@Preview
-fun NextPageLoaderItemPreview() {
-    StarWarsTheme {
-        NextPageLoaderItem()
-    }
-}
-
-@Composable
 fun ErrorMessage(errorMessage: String, onRetry: () -> Unit) {
     Column(
         Modifier
@@ -146,17 +149,6 @@ fun ErrorMessage(errorMessage: String, onRetry: () -> Unit) {
         Button(onClick = onRetry) {
             Text(text = stringResource(R.string.retry))
         }
-    }
-}
-
-@Composable
-@Preview
-fun ErrorPreview() {
-    StarWarsTheme {
-        ErrorMessage(
-            errorMessage = stringResource(R.string.error_occured),
-            onRetry = { /*TODO*/ }
-        )
     }
 }
 
@@ -200,6 +192,25 @@ fun SkeletonPlaceHolder(modifier: Modifier) {
                 )
             }
         }
+    }
+}
+
+@Composable
+@Preview
+fun NextPageLoaderItemPreview() {
+    StarWarsTheme {
+        NextPageLoaderItem()
+    }
+}
+
+@Composable
+@Preview
+fun ErrorPreview() {
+    StarWarsTheme {
+        ErrorMessage(
+            errorMessage = stringResource(R.string.error_occured),
+            onRetry = { /*TODO*/ }
+        )
     }
 }
 

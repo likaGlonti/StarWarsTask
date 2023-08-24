@@ -1,10 +1,10 @@
 package com.tasktest.starwars.di
 
-import com.tasktest.starwars.data.CharactersRepositoryImpl
-import com.tasktest.starwars.data.StarWarsApiService
+import com.tasktest.starwars.data.repo.CharactersRepositoryImpl
+import com.tasktest.starwars.data.remote.StarWarsApiService
 import com.tasktest.starwars.data.pagination.CharactersRemoteDataSource
 import com.tasktest.starwars.data.pagination.CharactersRemoteDataSourceImpl
-import com.tasktest.starwars.domain.repo.CharactersRepository
+import com.tasktest.starwars.data.repo.CharactersRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

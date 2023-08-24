@@ -5,4 +5,5 @@
     <string name="no_more_data_to_display">We have no more data to display for today</string>
     <string name="height">height: %1$s</string>
     <string name="mass">mass: %1$s</string>
+    <string name="released">Released %1$s</string>
 </resources>

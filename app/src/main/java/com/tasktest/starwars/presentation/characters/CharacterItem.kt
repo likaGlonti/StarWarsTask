@@ -1,5 +1,6 @@
 package com.tasktest.starwars.presentation.characters
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,7 +33,7 @@ fun CharacterItem(
     modifier: Modifier
 ) {
     Column(modifier.fillMaxWidth()) {
-        CharacterContent(character = character, onCellClick = { /*TODO*/ }, modifier = modifier)
+        CharacterContent(character = character, onCellClick = onCellClick, modifier = modifier)
         Divider()
     }
 }
@@ -69,7 +70,7 @@ fun CharacterContent(
             painter = painterResource(StarWarsIcons.Arrow),
             tint = character.eyeColor,
             contentDescription = null,
-            modifier = modifier.weight(1f)
+            modifier = modifier.weight(1f).clickable { onCellClick() }
         )
     }
 }
@@ -110,6 +111,7 @@ fun HMM() {
                             name = "Chewbacca",
                             height = "167",
                             mass = "112",
+                            filmIDs = emptyList(),
                             icon = CharacterIconType.Alien
                         ),
                         onCellClick = { /*TODO*/ },
