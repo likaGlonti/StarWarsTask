@@ -15,9 +15,10 @@ fun String.takeOutId(): Int {
 
 fun String.toFormattedDate(): String {
     return try {
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val date = LocalDate.parse(this.trim(), formatter)
-        "${date.month} ${date.dayOfMonth},${date.year}"
+        val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy")
+        val date = LocalDate.parse(this.trim(), inputFormatter)
+        date.format(outputFormatter)
     } catch (e: Exception) {
         return this
     }
