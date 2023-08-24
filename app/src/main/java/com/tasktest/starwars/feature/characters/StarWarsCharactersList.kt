@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -28,9 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.tasktest.starwars.CharacterItem
-import com.tasktest.starwars.CharacterUI
 import com.tasktest.starwars.R
 import com.tasktest.starwars.data.error.NoMorePagesLeftToLoadException
+import com.tasktest.starwars.domain.mapper.Character
 import com.tasktest.starwars.ui.theme.StarWarsTheme
 
 @Composable
@@ -59,47 +60,48 @@ fun StarWarsCharactersList(
                     item {
                         ErrorMessage(
                             errorMessage = errorMessage ?: stringResource(R.string.error_occured),
-                            onRetry = onRetry,
-                            modifier = modifier
+                            onRetry = onRetry
                         )
                     }
                 }
 
                 loadState.append is LoadState.Loading -> {
-                    item { NextPageLoaderItem(modifier = modifier) }
+                    item { NextPageLoaderItem() }
                 }
 
                 loadState.append is LoadState.Error -> {
                     val error = (characterItems.loadState.append as LoadState.Error).error
-                    val errorMessage = error.localizedMessage
-                    if (error is NoMorePagesLeftToLoadException) {
-                        item {
-                            NoMoreDataToShow(
-                                message = error.localizedMessage
-                                    ?: stringResource(R.string.no_more_data_to_display),
-                                modifier
-                            )
-                        }
-                    } else {
-                        item {
-                            ErrorMessage(
-                                errorMessage = errorMessage
-                                    ?: stringResource(R.string.error_occured),
-                                onRetry = onRetry,
-                                modifier = modifier
-                            )
-                        }
-                    }
+                    HandleMessage(error = error, onRetry)
                 }
             }
         }
     }
 }
 
+fun LazyListScope.HandleMessage(error: Throwable, onRetry: () -> Unit) {
+    val errorMessage = error.localizedMessage
+    if (error is NoMorePagesLeftToLoadException) {
+        item {
+            NoMoreDataToShow(
+                message = error.localizedMessage
+                    ?: stringResource(R.string.no_more_data_to_display)
+            )
+        }
+    } else {
+        item {
+            ErrorMessage(
+                errorMessage = errorMessage
+                    ?: stringResource(R.string.error_occured),
+                onRetry = onRetry
+            )
+        }
+    }
+}
+
 @Composable
-fun NoMoreDataToShow(message: String, modifier: Modifier) {
+fun NoMoreDataToShow(message: String) {
     Text(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .background(Color.White)
             .padding(20.dp),
@@ -110,9 +112,9 @@ fun NoMoreDataToShow(message: String, modifier: Modifier) {
 }
 
 @Composable
-fun NextPageLoaderItem(modifier: Modifier) {
+fun NextPageLoaderItem() {
     CircularProgressIndicator(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .background(color = Color.White)
             .padding(10.dp)
@@ -124,14 +126,14 @@ fun NextPageLoaderItem(modifier: Modifier) {
 @Preview
 fun NextPageLoaderItemPreview() {
     StarWarsTheme {
-        NextPageLoaderItem(modifier = Modifier)
+        NextPageLoaderItem()
     }
 }
 
 @Composable
-fun ErrorMessage(errorMessage: String, onRetry: () -> Unit, modifier: Modifier) {
+fun ErrorMessage(errorMessage: String, onRetry: () -> Unit) {
     Column(
-        modifier
+        Modifier
             .fillMaxWidth()
             .background(color = Color.White, shape = RoundedCornerShape(10.dp))
             .padding(20.dp),
@@ -155,8 +157,7 @@ fun ErrorPreview() {
     StarWarsTheme {
         ErrorMessage(
             errorMessage = stringResource(R.string.error_occured),
-            onRetry = { /*TODO*/ },
-            modifier = Modifier
+            onRetry = { /*TODO*/ }
         )
     }
 }

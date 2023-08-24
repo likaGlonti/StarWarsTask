@@ -1,4 +1,4 @@
-package com.tasktest.starwars.data.di
+package com.tasktest.starwars.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.tasktest.starwars.data.StarWarsApiService

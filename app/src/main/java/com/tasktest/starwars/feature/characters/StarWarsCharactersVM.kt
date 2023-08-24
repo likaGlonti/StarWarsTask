@@ -4,8 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.tasktest.starwars.CharacterUI
-import com.tasktest.starwars.domain.usecase.GetCharactersPagedDataUseCase
+import androidx.paging.map
 import com.tasktest.starwars.domain.usecase.GetMergedDataOfCharacterAndSpecieUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,15 +20,15 @@ class StarWarsCharactersVM @Inject constructor(
     private val _characterState: MutableStateFlow<PagingData<CharacterUI>> =
         MutableStateFlow(value = PagingData.empty())
     val state: MutableStateFlow<PagingData<CharacterUI>> get() = _characterState
+
     init {
-        onEvent(CharacterListEvent.GetCharacters)
+        onEvent(UiEvent.GetCharacters)
     }
 
-
-    fun onEvent(event: CharacterListEvent) {
+    private fun onEvent(event: UiEvent) {
         viewModelScope.launch {
             when (event) {
-                is CharacterListEvent.GetCharacters -> {
+                is UiEvent.GetCharacters -> {
                     getMovies()
                 }
             }
@@ -40,12 +39,14 @@ class StarWarsCharactersVM @Inject constructor(
         getCharactersPagedDataUseCase()
             .distinctUntilChanged()
             .cachedIn(viewModelScope)
-            .collect {
-                _characterState.value = it
+            .collect { data ->
+                _characterState.value = data.map {
+                    it.mapToUI()
+                }
             }
     }
 
-    sealed interface CharacterListEvent {
-        data object GetCharacters : CharacterListEvent
+    sealed interface UiEvent {
+        data object GetCharacters : UiEvent
     }
 }

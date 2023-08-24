@@ -1,4 +1,4 @@
-package com.tasktest.starwars.data.di
+package com.tasktest.starwars.di
 
 import com.tasktest.starwars.data.CharactersRepositoryImpl
 import com.tasktest.starwars.data.StarWarsApiService
