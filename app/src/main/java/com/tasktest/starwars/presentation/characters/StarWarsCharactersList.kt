@@ -31,7 +31,6 @@ import androidx.paging.compose.LazyPagingItems
 import com.tasktest.starwars.R
 import com.tasktest.starwars.data.error.NoMorePagesLeftToLoadException
 import com.tasktest.starwars.navigation.AppScreen
-import com.tasktest.starwars.navigation.FILM_IDS_ARG
 import com.tasktest.starwars.navigation.LocalNavController
 import com.tasktest.starwars.ui.theme.StarWarsTheme
 
@@ -50,7 +49,7 @@ fun StarWarsCharactersList(
                     character = it,
                     onCellClick = {
                         navController.navigate(
-                            "${AppScreen.FilmsScreen.route}/$FILM_IDS_ARG=${it.filmIDs.toIntArray()}"
+                            AppScreen.FilmsScreen.route
                         )
                     },
                     modifier = modifier

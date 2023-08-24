@@ -1,10 +1,8 @@
 package com.tasktest.starwars.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.tasktest.starwars.presentation.characters.StarWarsCharactersScreen
 import com.tasktest.starwars.presentation.films.FilmsScreen
 
@@ -20,14 +18,9 @@ fun StarWarsNavGraph() {
         }
 
         composable(
-            route = AppScreen.FilmsScreen.route.plus("/{$FILM_IDS_ARG}"),
-            arguments = listOf(navArgument(FILM_IDS_ARG) {
-                type = NavType.IntArrayType
-                defaultValue = listOf(1)
-            })
-        ) { backStackEntry ->
-            val filmIds = backStackEntry.arguments?.getIntArray(FILM_IDS_ARG)
-            filmIds?.let { FilmsScreen(it.toList()) }
+            route = AppScreen.FilmsScreen.route
+        ) {
+            FilmsScreen()
         }
     }
 }
