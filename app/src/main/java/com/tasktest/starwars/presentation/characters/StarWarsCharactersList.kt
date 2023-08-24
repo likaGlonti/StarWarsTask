@@ -49,7 +49,9 @@ fun StarWarsCharactersList(
                     character = it,
                     onCellClick = {
                         navController.navigate(
-                            AppScreen.FilmsScreen.route
+                            "${AppScreen.FilmsScreen.route}/${
+                                it.filmIDs.toIntArray().joinToString(",")
+                            }"
                         )
                     },
                     modifier = modifier

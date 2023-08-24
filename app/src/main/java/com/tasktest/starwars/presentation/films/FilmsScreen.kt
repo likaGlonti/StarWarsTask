@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,9 +29,11 @@ import com.tasktest.starwars.ui.theme.StarWarsTheme
 
 @Composable
 fun FilmsScreen(
+    filmIds: List<Int>,
     modifier: Modifier = Modifier,
     filmsViewModel: FilmsViewModel = hiltViewModel()
 ) {
+    LaunchedEffect(Unit) { filmsViewModel.fetchFilms(filmIds) }
     val state = filmsViewModel.state.collectAsState()
     when (state.value) {
         is UiState.Loading -> {
@@ -40,6 +43,7 @@ fun FilmsScreen(
                     .background(color = Color.White)
                     .padding(10.dp)
                     .wrapContentWidth(Alignment.CenterHorizontally)
+
             )
         }
 
@@ -62,13 +66,13 @@ fun FilmItem(modifier: Modifier = Modifier, film: FilmUI) {
             .padding(horizontal = 26.dp)
     ) {
         Text(
-            modifier = modifier.paddingFromBaseline(top = 37.dp),
-            text = film.title, style = MaterialTheme.typography.headlineMedium
+            modifier = modifier.paddingFromBaseline(top = 42.dp),
+            text = film.title, style = MaterialTheme.typography.titleLarge
         )
         Text(
             modifier = modifier.paddingFromBaseline(bottom = 42.dp),
             text = stringResource(R.string.released, film.releaseDate),
-            style = MaterialTheme.typography.headlineSmall
+            style = MaterialTheme.typography.titleMedium
         )
     }
 }
