@@ -1,4 +1,4 @@
-package com.tasktest.starwars.feature.characters
+package com.tasktest.starwars.presentation.characters
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

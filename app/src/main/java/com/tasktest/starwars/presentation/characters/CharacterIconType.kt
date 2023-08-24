@@ -1,4 +1,4 @@
-package com.tasktest.starwars
+package com.tasktest.starwars.presentation.characters
 
 import com.tasktest.starwars.data.model.SpecieResponse
 import com.tasktest.starwars.designsystem.icon.StarWarsIcons

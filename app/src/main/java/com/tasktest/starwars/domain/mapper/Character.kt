@@ -1,6 +1,6 @@
 package com.tasktest.starwars.domain.mapper
 
-import com.tasktest.starwars.CharacterIconType
+import com.tasktest.starwars.presentation.characters.CharacterIconType
 import com.tasktest.starwars.data.model.EyeColor
 
 data class Character(

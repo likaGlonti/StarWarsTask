@@ -1,7 +1,6 @@
-package com.tasktest.starwars.feature.characters
+package com.tasktest.starwars.presentation.characters
 
 import androidx.compose.ui.graphics.Color
-import com.tasktest.starwars.CharacterIconType
 
 data class CharacterUI(
     val icon: CharacterIconType,

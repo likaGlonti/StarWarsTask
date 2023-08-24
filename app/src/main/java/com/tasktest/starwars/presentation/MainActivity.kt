@@ -1,4 +1,4 @@
-package com.tasktest.starwars.core
+package com.tasktest.starwars.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,10 +8,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.GraphicsLayerScope
 import androidx.compose.ui.tooling.preview.Preview
-import com.tasktest.starwars.feature.characters.StarWarsCharactersScreen
+import com.tasktest.starwars.presentation.characters.StarWarsCharactersScreen
 import com.tasktest.starwars.ui.theme.StarWarsTheme
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,4 +1,4 @@
-package com.tasktest.starwars.feature.characters
+package com.tasktest.starwars.presentation.characters
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,10 +28,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
-import com.tasktest.starwars.CharacterItem
 import com.tasktest.starwars.R
 import com.tasktest.starwars.data.error.NoMorePagesLeftToLoadException
-import com.tasktest.starwars.domain.mapper.Character
 import com.tasktest.starwars.ui.theme.StarWarsTheme
 
 @Composable
